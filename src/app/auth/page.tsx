@@ -17,13 +17,13 @@ export default function Auth() {
           Let's start Recycling
         </span>
         <Link
-          href="/login"
+          href="/auth/login"
           className="my-3 bg-black text-white w-3/4 p-3 rounded-lg font-bold z-10"
         >
           Sign in
         </Link>
         <Link
-          href="/signup"
+          href="/auth/signup"
           className="my-3 bg-white w-3/4 rounded-lg p-3 font-bold border-2 border-black z-10"
         >
           Sign up
