@@ -1,4 +1,4 @@
-import { Button } from "@/componenets/button";
+import { Button } from "@/components/button";
 import Head from "next/head";
 
 export default function login() {
