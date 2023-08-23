@@ -11,10 +11,9 @@ export default function Auth() {
       <div className="h-3/5 bg-primary flex items-center justify-center">
         <Image src="/logo.png" width={150} height={150} alt="logo" />
       </div>
-
       <div className="bg-white flex flex-col items-center justify-start relative before:w-[150%] before:aspect-square before:absolute before:bg-inherit before:rounded-full before:top-0 before:-translate-y-[15%]  ">
         <span className="font-bold text-black my-3 text-2xl z-10">
-          Let's start Recycling
+          Let&apos;s start Recycling
         </span>
         <Link
           href="/auth/login"
