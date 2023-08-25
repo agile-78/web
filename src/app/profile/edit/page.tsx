@@ -1,18 +1,22 @@
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import Image from "next/image";
-import backArrow from "../../../public/backArrow.png";
-import profile from "../../../public/profile.png";
 
-export default function edit() { 
-    return ( 
+export default function edit() {
+  return (
     <main className="bg-white h-screen">
       <div className="pl-2 pt-2">
-        <Image src={backArrow} alt="Back" />
+        <Image src="/backArrow.png" width={14} height={14} alt="Back" />
       </div>
-  
+
       <div className="flex justify-center items-center">
-        <Image src={profile} alt="Profile picture" className="pt-4 pb-4 mx-auto scale-90" />
+        <Image
+          src="/profile.png"
+          width={260}
+          height={260}
+          alt="Profile picture"
+          className="pt-4 pb-4 mx-auto"
+        />
       </div>
 
       <div className="h-3/5">
@@ -26,7 +30,6 @@ export default function edit() {
           <Button className="mt-4">Done</Button>
         </form>
       </div>
-      
-    </main> 
-    ) 
+    </main>
+  );
 }
