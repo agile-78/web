@@ -1,18 +1,32 @@
 import React from 'react';
 
 const YourComponent: React.FC = () => (
-  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-    <button className="bg-blue-500 text-white text-xl font-semibold py-48 px-16 rounded-lg mb-10 hover:bg-blue-600" style={{ width: '100%' }}>
-      Scan to Earn Points
-    </button>
+  <div className="flex flex-col justify-center items-center min-h-screen p-10 pt-50">
+      <div style={{ textAlign: 'center', width: '80%' }}>
+        <button className="bg-blue-600 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-blue-300 focus:bg-blue-600 relative w-full transition-all" style={{ width: '100%' }}>
+        <div style={{ fontWeight: 'bold', fontSize: '18%' }}>Scan to earn points</div>
+          <img src="/home-images/bin.png" alt="Rewards" style={{ width: '100%', height: 'auto' }} />
+          <div className="absolute inset-0 flex items-center justify-center"></div>
+        </button>
+      </div>
+      <br /><br />
     <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-      <button className="bg-blue-500 text-white text-lg font-semibold py-24 px-20 rounded-lg hover:bg-blue-600" style={{ width: '49%' }}>
-        Rewards
-      </button>
-      <button className="bg-blue-500 text-white text-lg font-semibold py-24 px-20 rounded-lg hover:bg-blue-600" style={{ width: '49%' }}>
-        Recycling Locations
-      </button>
+      <div style={{ textAlign: 'center', width: '49%' }}>
+        <button className="bg-purple-500 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-purple-600 focus:bg-purple-600 relative w-full transition-all" style={{ width: '100%' }}>
+          <img src="/home-images/reward.png" alt="Rewards" style={{ width: '100%', height: 'auto' }} />
+          <div className="absolute inset-0 flex items-center justify-center"></div>
+        </button>
+        <div style={{ fontSize: '30%' }}>Rewards</div>
+      </div>
+      <div style={{ textAlign: 'center', width: '49%' }}>
+      <button className="bg-green-500 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-green-600 focus:bg-green-600 relative w-full transition-all" style={{ width: '100%' }}>
+          <img src="/home-images/map.png" alt="Rewards" style={{ width: '100%', height: 'auto' }} />
+          <div className="absolute inset-0 flex items-center justify-center"></div>
+        </button>
+        <div style={{ fontSize: '30%' }}>Recycling Locations</div>
+      </div>
     </div>
+    <br /><br /><br /><br />
   </div>
 );
 
