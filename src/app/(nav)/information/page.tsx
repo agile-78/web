@@ -7,113 +7,105 @@ interface RecyclingInfo {
 
 const PlasticInfos: RecyclingInfo[] = [
   {
-    imageUrl: 'url1',
+    imageUrl: '/info-images/beverage.png',
     title: 'Beverage bottles'
   },
   {
-    imageUrl: 'url2',
+    imageUrl: '/info-images/detergent.png',
     title: 'Detergent bottles',
   },
   {
-    imageUrl: 'url3',
+    imageUrl: '/info-images/bag.png',
     title: 'Plastic bags',
   },
   {
-    imageUrl: 'plasticurl4',
+    imageUrl: '/info-images/shampoo.png',
     title: 'Shampoo bottles',
   },
   {
-    imageUrl: 'url5',
+    imageUrl: '/info-images/packWfoil.png',
     title: 'Packaging with foil',
   },
   {
-    imageUrl: 'url6',
+    imageUrl: '/info-images/mel.jpeg',
     title: 'Melamine products',
   },
   {
-    imageUrl: 'url7',
+    imageUrl: '/info-images/card.png',
     title: 'Expired credit card',
   },
   {
-    imageUrl: 'url8',
+    imageUrl: '/info-images/toys.png',
     title: 'Toys',
-  },
-  {
-    imageUrl: 'url9',
-    title: 'Ziplock bags, bubble wraps, egg trays, fruit box and film packagings'
-  },
-  {
-    imageUrl: 'url10',
-    title: 'Plastic packaging contaminated with food'
   }
 ];
 
 const AluminiumInfos: RecyclingInfo[] = [
     {
-      imageUrl: 'alu_url1',
+      imageUrl: '/info-images/cans.png',
       title: 'Aluminum cans',
     },
     {
-      imageUrl: 'alu_url2',
+      imageUrl: '/info-images/foil.png',
       title: 'Aluminum foil',
     },
     {
-      imageUrl: 'alu_url3',
+      imageUrl: '/info-images/tray.png',
       title: 'Aluminum trays',
     },
     {
-      imageUrl: 'alu_url4',
+      imageUrl: '/info-images/aluBot.jpeg',
       title: 'Aluminum bottles',
     },
     {
-      imageUrl: 'alu_url5',
+      imageUrl: '/info-images/aluCon.png',
       title: 'Aluminum containers',
     },
     {
-      imageUrl: 'alu_url6',
+      imageUrl: '/info-images/lids.png',
       title: 'Aluminum lids',
     },
     {
-      imageUrl: 'alu_url7',
+      imageUrl: '/info-images/tubes.png',
       title: 'Aluminum tubes',
     },
     {
-      imageUrl: 'alu_url8',
+      imageUrl: '/info-images/package.png',
       title: 'Aluminum packaging',
     },
   ];
   
   const PaperInfos: RecyclingInfo[] = [
     {
-      imageUrl: 'paper_url1',
+      imageUrl: '/info-images/news.png',
       title: 'Newspapers',
     },
     {
-      imageUrl: 'paper_url2',
+      imageUrl: '/info-images/box.png',
       title: 'Cardboard boxes',
     },
     {
-      imageUrl: 'paper_url3',
+      imageUrl: '/info-images/maga.png',
       title: 'Magazines',
     },
     {
-      imageUrl: 'paper_url4',
+      imageUrl: '/info-images/office.png',
       title: 'Office paper',
     },
     {
-      imageUrl: 'paper_url5',
+      imageUrl: '/info-images/junk.png',
       title: 'Junk mail',
     },
     {
-      imageUrl: 'paper_url6',
+      imageUrl: '/info-images/Pbag.png',
       title: 'Paper bags',
     },
     {
-      imageUrl: 'paper_url7',
+      imageUrl: '/info-images/cereal.png',
       title: 'Cereal boxes',
     },
     {
-      imageUrl: 'paper_url8',
+      imageUrl: '/info-images/phone.png',
       title: 'Phone books',
     },
   ];
@@ -125,56 +117,57 @@ const AluminiumInfos: RecyclingInfo[] = [
     extraCan: string;
     extraNot: string;
   }> = ({ title, recyclableItems, nonRecyclableItems, extraCan, extraNot }) => (
-    <div className="mt-8 bg-gray-200 p-4 rounded-lg shadow-md">
-      <div className="text-6xl font-semibold mb-2 text-center text-blue-500">{title}</div>
-      <h2 className="text-5xl font-semibold mb-2 text-green-600">OK to recycle</h2>
-      <div className="grid grid-cols-4 gap-4 mt-4">
-        {recyclableItems.map((recyclingInfo, index) => (
-          <div key={index} className="bg-white p-8 rounded-lg shadow-md">
-            <div className="mb-4 flex items-center justify-center">
-              <img
-                className="w-16 h-16 rounded-full mr-4"
-                src={recyclingInfo.imageUrl}
-                alt={recyclingInfo.title}
-              />
-            </div>
-            <div className="text-center">
-              <h1 className="text-xl font-semibold">{recyclingInfo.title}</h1>
-            </div>
-          </div>
-        ))}
+<div className="mt-8 bg-gray-200 p-4 rounded-lg shadow-md">
+  <div className="text-4xl sm:text-6xl font-semibold mb-2 text-center text-blue-500">{title}</div>
+  <h2 className="text-3xl sm:text-5xl font-semibold mb-2 text-green-600">OK to recycle</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+    {recyclableItems.map((recyclingInfo, index) => (
+      <div key={index} className="bg-white p-4 sm:p-8 rounded-lg shadow-md">
+        <div className="mb-2 sm:mb-4 flex items-center justify-center">
+          <img
+            className="w-12 h-12 sm:w-16 sm:h-16 mr-2 sm:mr-4"
+            src={recyclingInfo.imageUrl}
+            alt={recyclingInfo.title}
+          />
+        </div>
+        <div className="text-center">
+          <h1 className="text-lg sm:text-xl font-semibold">{recyclingInfo.title}</h1>
+        </div>
       </div>
-      <p className="text-2xl text-center mt-8">
-        <b>
-          <u>Other items that can be recycled:</u><br />{extraCan}
-        </b>
-      </p>
-  
-      <br />
-  
-      <h2 className="text-5xl font-semibold mb-2 text-red-600">NOT OK to recycle</h2>
-      <div className="grid grid-cols-4 gap-4 mt-4">
-        {nonRecyclableItems.map((recyclingInfo, index) => (
-          <div key={index} className="bg-white p-8 rounded-lg shadow-md">
-            <div className="mb-4 flex items-center justify-center">
-              <img
-                className="w-16 h-16 rounded-full mr-4"
-                src={recyclingInfo.imageUrl}
-                alt={recyclingInfo.title}
-              />
-            </div>
-            <div className="text-center">
-              <h1 className="text-xl font-semibold">{recyclingInfo.title}</h1>
-            </div>
-          </div>
-        ))}
+    ))}
+  </div>
+  <p className="text-xl sm:text-2xl text-center mt-6 sm:mt-8">
+    <b>
+      <u>Other items that can be recycled:</u><br />{extraCan}
+    </b>
+  </p>
+
+  <br />
+
+  <h2 className="text-3xl sm:text-5xl font-semibold mb-2 text-red-600">NOT OK to recycle</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+    {nonRecyclableItems.map((recyclingInfo, index) => (
+      <div key={index} className="bg-white p-4 sm:p-8 rounded-lg shadow-md">
+        <div className="mb-2 sm:mb-4 flex items-center justify-center">
+          <img
+            className="w-12 h-12 sm:w-16 sm:h-16 mr-2 sm:mr-4"
+            src={recyclingInfo.imageUrl}
+            alt={recyclingInfo.title}
+          />
+        </div>
+        <div className="text-center">
+          <h1 className="text-lg sm:text-xl font-semibold">{recyclingInfo.title}</h1>
+        </div>
       </div>
-      <p className="text-2xl text-center mt-8">
-        <b>
-          <u>Other items that cannot be recycled:</u><br />{extraNot}
-        </b>
-      </p>
-    </div>
+    ))}
+  </div>
+  <p className="text-xl sm:text-2xl text-center mt-6 sm:mt-8">
+    <b>
+      <u>Other items that cannot be recycled:</u><br />{extraNot}
+    </b>
+  </p>
+</div>
+
   );
   
   const YourComponent: React.FC = () => (
@@ -208,24 +201,5 @@ const AluminiumInfos: RecyclingInfo[] = [
   );
   
   export default YourComponent;
-
-
-
-
-
-
-
-//         PLASTIC
-//               extraCan={Ziplock bags, bubble wraps, egg trays, fruit box and film packagings}
-//               extraNot={Plastic packaging contaminated with food}
-
-//           ALUMINIUM
-//               extraCan={Aluminum cans, foil, pie tins}
-//               extraNot={Foil with food residue, aluminum cans with hazardous waste}
-
-//           PAPER
-//               extraCan={Clean paper, cardboard, newspapers}
-//               extraNot={Greasy or food-soiled paper, laminated paper, tissues}
-
   
   
