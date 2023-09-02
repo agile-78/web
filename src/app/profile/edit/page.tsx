@@ -2,12 +2,13 @@ import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import Image from "next/image";
 import Link from "next/link";
+import backArrow from "../../../../public/backArrow.png";
 
 export default function edit() {
   return (
     <main className="bg-white h-screen">
       <div className="pl-2 pt-2">
-        <Link href="/profile"><Image src="/backArrow.png" width={14} height={14} alt="Back" /></Link>
+        <Link href="/profile"><Image src={backArrow} alt="Back" /></Link>
       </div>
 
       <div className="flex justify-center items-center">
