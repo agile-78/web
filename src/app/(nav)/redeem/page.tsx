@@ -3,16 +3,14 @@ import liho from "../../../../public/liho.png";
 import starbucks from "../../../../public/starbucks.png";
 import burgerking from "../../../../public/burgerking.png";
 import star from "../../../../public/star.png";
+import backArrow from "../../../../public/backArrow.png";
+import Link from "next/link";
 
 export default function redeem() { 
     return ( 
     <main className="bg-white h-screen"> 
-      <div>
-        <button className=" hover text-black font-bold py-2 px-4 rounded h-[5%]">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-        </button>
+      <div className="pl-2 pt-2">
+        <Link href="/profile"><Image src={backArrow} width={14} height={14} alt="Back" /></Link>
       </div>
       <div className="flex mt-2 w-screen h-[5%] justify-center items-center">
         <p className="text-center text-2xl pt-2 text-left mr-3 w-[50%]">My Rewards</p>
