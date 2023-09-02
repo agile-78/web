@@ -8,10 +8,10 @@ export default function signUp() {
       <Head>
         <title>Sign up</title>
       </Head>
-      <div className="h-2/5 flex justify-center items-center relative before:content-[''] before:w-[150%] before:absolute before:top-0 before:left-0 before:-translate-x-1/4 before:-translate-y-1/2 before:aspect-square before:bg-primary before:rounded-full before:-z-10">
+      <div className="aspect-[1/0.8] flex justify-center items-center relative before:content-[''] before:w-[150%] before:absolute before:top-0 before:left-0 before:-translate-x-[30%] before:-translate-y-[50%] before:aspect-square before:bg-primary before:rounded-full before:-z-10">
         <span className="text-white text-4xl">Sign up</span>
       </div>
-      <div className=" h-3/5 bg-white">
+      <div className="bg-white">
         <form className="mx-2">
           <div className="flex">
             <Input placeholder="Name" className="w-1/2 mr-2" />
