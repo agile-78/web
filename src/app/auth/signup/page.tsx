@@ -1,5 +1,4 @@
-import { Button } from "@/components/button";
-import { Input } from "@/components/input";
+import { SignupForm } from "@/components/auth/form/signup";
 import Head from "next/head";
 
 export default function signUp() {
@@ -12,17 +11,7 @@ export default function signUp() {
         <span className="text-white text-4xl">Sign up</span>
       </div>
       <div className="bg-white">
-        <form className="mx-2">
-          <div className="flex">
-            <Input placeholder="Name" className="w-1/2 mr-2" />
-            <Input placeholder="Surname" className="w-1/2 ml-2" />
-          </div>
-          <Input placeholder="Username" className="mt-4" />
-          <Input placeholder="Email address" className="mt-4" />
-          <Input placeholder="Password" className="mt-4" />
-          <Input placeholder="Referal Code" className="mt-4" />
-          <Button className="mt-5">Sign up</Button>
-        </form>
+        <SignupForm />
       </div>
     </main>
   );
