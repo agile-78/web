@@ -1,17 +1,21 @@
 import Image from "next/image";
-import liho from "../../../../public/liho.png";
-import starbucks from "../../../../public/starbucks.png";
-import burgerking from "../../../../public/burgerking.png";
-import star from "../../../../public/star.png";
-import backArrow from "../../../../public/backArrow.png";
 import Link from "next/link";
+import { getRewards } from "@/services/rewardService";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { Reward } from "@/components/reward";
 
-export default function rewards() {
+export default async function rewards() {
+  const session = await getServerSession(authOptions);
+
+  const res = await getRewards(session?.apiToken as string);
+  const rewards = res.data.rewards;
+
   return (
     <main className="bg-white h-screen">
       <div className="pl-2 pt-2">
         <Link href="/profile">
-          <Image src={backArrow} alt="Back" />
+          <Image src={"/backArrow.png"} width={15} height={15} alt="Back" />
         </Link>
       </div>
       <div className="flex mt-2 w-screen h-[5%] justify-center items-center">
@@ -19,7 +23,13 @@ export default function rewards() {
           Rewards Redemption
         </p>
         <div className="bg-[#E498FF] flex justify-center text-white pl-4 rounded-lg shadow-md w-[35%] h-[100%]">
-          <Image src={star} alt="star" className="mr-1 w-[20%] h-[60%] my-1" />
+          <Image
+            src={"/star.png"}
+            width={0}
+            height={0}
+            alt="star"
+            className="mr-1 w-[20%] h-[60%] my-1"
+          />
           <p className="mr-1 py-1 w-[80%]">50 points</p>
         </div>
       </div>
@@ -28,44 +38,16 @@ export default function rewards() {
       </div>
 
       <div className="flex flex-col space-y-4 justify-center items-center">
-        <div className="bg-[#FFB6B6] bg-opacity-50 w-[90%] rounded-lg p-4 text-black flex items-center justify-between py-4">
-          <Image src={liho} alt="liho" className="w-1/4 h-1/3 p1-2 pt-2" />
-          <div>
-            <p className="font-bold">$5 voucher</p>
-            <p className="text-lg">500 points</p>
-          </div>
-          <button className="bg-[#E498FF] py-2 px-4 rounded-xl">
-            Exchange
-          </button>
-        </div>
-        <div className="bg-[#FFB6B6] bg-opacity-50 w-[90%] rounded-lg p-4 text-black flex items-center justify-between py-4">
-          <Image
-            src={starbucks}
-            alt="starbucks"
-            className="w-1/4 h-1/3 p1-2 pt-2"
+        {rewards.map((reward) => (
+          <Reward
+            title={reward.title}
+            points={reward.points}
+            src={reward.logo}
+            alt="logo"
+            _id={reward._id}
+            key={reward._id}
           />
-          <div>
-            <p className="font-bold">$5 voucher</p>
-            <p className="text-lg">500 points</p>
-          </div>
-          <button className="bg-[#E498FF] py-2 px-4 rounded-xl">
-            Exchange
-          </button>
-        </div>
-        <div className="bg-[#FFB6B6] bg-opacity-50 w-[90%] rounded-lg p-4 text-black flex items-center justify-between py-4">
-          <Image
-            src={burgerking}
-            alt="burgerking"
-            className="w-1/4 h-1/3 p1-2 pt-2"
-          />
-          <div>
-            <p className="font-bold">$5 voucher</p>
-            <p className="text-lg">500 points</p>
-          </div>
-          <button className="bg-[#E498FF] py-2 px-4 rounded-xl">
-            Exchange
-          </button>
-        </div>
+        ))}
       </div>
     </main>
   );

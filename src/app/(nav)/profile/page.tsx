@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import profilepic from "../../../../public/profile.png";
+import { SignOutButton } from "@/components/signOut";
 
 export default function profile() {
   return (
@@ -39,6 +40,8 @@ export default function profile() {
             <p className="text-xl py-2">My referral code &gt;</p>
           </Link>
         </div>
+        <div className="w-[90%] py-2 pl-1 text-left h-[10%]"></div>
+        <SignOutButton />
         <div className="h-[15%]"></div>
       </div>
     </main>
