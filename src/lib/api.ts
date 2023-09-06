@@ -36,3 +36,35 @@ export const get = async (url: string, token?: string) => {
     console.log(e);
   }
 };
+
+export const patch = async (url: string, body: any, token?: string) => {
+  try {
+    if (token) {
+      return await axiosClient.patch(url, body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    return await axiosClient.patch(url, body);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const del = async (url: string, token?: string) => {
+  try {
+    if (token) {
+      return await axiosClient.delete(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    return await axiosClient.delete(url);
+  } catch (e) {
+    console.log(e);
+  }
+};
