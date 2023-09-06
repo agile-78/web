@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/button";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 
 export function LoginForm() {
@@ -8,8 +9,14 @@ export function LoginForm() {
     email: string;
     password: string;
   }
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || undefined;
   const submitHandler = async (val: data) => {
-    await signIn("credentials", { ...val });
+    await signIn("credentials", {
+      ...val,
+      callbackUrl,
+    });
   };
 
   return (
