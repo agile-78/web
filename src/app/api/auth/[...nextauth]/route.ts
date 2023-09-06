@@ -60,7 +60,7 @@ export const authOptions: AuthOptions = {
 
       return {
         ...session,
-        user: sanitizedToken.user._doc,
+        user: sanitizedToken.user,
         apiToken: token.apiToken,
       };
     },
