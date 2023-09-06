@@ -4,6 +4,7 @@ import { getRewards } from "@/services/rewardService";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Reward } from "@/components/reward";
+import BackBtn from "@/components/backBtn";
 
 export default async function rewards() {
   const session = await getServerSession(authOptions);
@@ -14,9 +15,7 @@ export default async function rewards() {
   return (
     <main className="bg-white h-screen">
       <div className="pl-2 pt-2">
-        <Link href="/profile">
-          <Image src={"/backArrow.png"} width={15} height={15} alt="Back" />
-        </Link>
+        <BackBtn />
       </div>
       <div className="flex mt-2 w-screen h-[5%] justify-center items-center">
         <p className="text-center text-2xl pt-2 text-left mr-3 w-[50%]">
