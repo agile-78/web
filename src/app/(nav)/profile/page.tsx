@@ -3,8 +3,17 @@ import Link from "next/link";
 
 import profilepic from "../../../../public/profile.png";
 import { SignOutButton } from "@/components/signOut";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getPoints } from "@/services/userService";
 
-export default function profile() {
+export default async function profile() {
+  const session = await getServerSession(authOptions);
+
+  const res = await getPoints(session?.user._id as string, session?.apiToken);
+
+  const { points } = res?.data;
+
   return (
     <main className="bg-white">
       <div className="flex flex-col justify-center items-center w-screen h-screen">
@@ -13,10 +22,10 @@ export default function profile() {
           alt="Profile picture"
           className="px-4 mx-auto w-auto h-[20%]"
         />
-        <p className="text-2xl">User</p>
+        <p className="text-2xl">{session?.user.name}</p>
         <div className="bg-[#FBFDB9] w-[90%] p-4 mb-3 text-left rounded-lg h-[20%]">
           <p className="text-2xl font-bold">Your points </p>
-          <p className="text-2xl pl-1 font-bold">50 points collected </p>
+          <p className="text-2xl pl-1 font-bold">{points} points collected </p>
           <p className="text-l pt-3">
             You have a 10 days recycle streak, keep it up!
           </p>
