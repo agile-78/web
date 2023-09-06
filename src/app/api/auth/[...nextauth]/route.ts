@@ -1,3 +1,4 @@
+import { IUser } from "@/interfaces/user";
 import { authenticate } from "@/services/authService";
 import NextAuth from "next-auth";
 import type { AuthOptions } from "next-auth";
@@ -55,11 +56,11 @@ export const authOptions: AuthOptions = {
         } else {
           return p;
         }
-      }, {});
+      }, {}) as any;
 
       return {
         ...session,
-        user: sanitizedToken,
+        user: sanitizedToken.user._doc,
         apiToken: token.apiToken,
       };
     },
