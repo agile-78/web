@@ -21,10 +21,10 @@ export const post = async (url: string, body: any, token?: string) => {
   }
 };
 
-export const get = async (url: string, token?: string) => {
+export const get = async <T>(url: string, token?: string) => {
   try {
     if (token) {
-      return await axiosClient.get(url, {
+      return await axiosClient.get<T>(url, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +33,7 @@ export const get = async (url: string, token?: string) => {
 
     return await axiosClient.get(url);
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 };
 

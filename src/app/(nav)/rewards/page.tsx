@@ -1,17 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getRewards } from "@/services/rewardService";
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Reward } from "@/components/reward";
 import BackBtn from "@/components/backBtn";
+import { getPoints } from "@/services/userService";
 
 export default async function rewards() {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as Session;
 
   const res = await getRewards(session?.apiToken as string);
   const rewards = res.data.rewards;
-
+  const { data } = await getPoints(
+    session?.user._id,
+    session?.apiToken as string
+  );
   return (
     <main className="bg-white h-screen">
       <div className="pl-2 pt-2">
@@ -29,7 +33,7 @@ export default async function rewards() {
             alt="star"
             className="mr-1 w-[20%] h-[60%] my-1"
           />
-          <p className="mr-1 py-1 w-[80%]">50 points</p>
+          <p className="mr-1 py-1 w-[80%]">{data.points} points</p>
         </div>
       </div>
       <div className="flex justify-center my-4 h-[5%]">
@@ -37,16 +41,20 @@ export default async function rewards() {
       </div>
 
       <div className="flex flex-col space-y-4 justify-center items-center">
-        {rewards.map((reward) => (
-          <Reward
-            title={reward.title}
-            points={reward.points}
-            src={reward.logo}
-            alt="logo"
-            _id={reward._id}
-            key={reward._id}
-          />
-        ))}
+        {rewards.length !== 0 ? (
+          rewards.map((reward) => (
+            <Reward
+              title={reward.title}
+              points={reward.points}
+              src={reward.logo}
+              alt="logo"
+              _id={reward._id}
+              key={reward._id}
+            />
+          ))
+        ) : (
+          <div>No rewards are available at the moment</div>
+        )}
       </div>
     </main>
   );
