@@ -3,6 +3,7 @@
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import { register } from "@/services/authService";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 
@@ -24,7 +25,9 @@ export function SignupForm() {
       <Input name="name" placeholder="name" className="mt-4" />
       <Input name="email" placeholder="Email address" className="mt-4" />
       <Input name="password" placeholder="Password" className="mt-4" />
-      <Input placeholder="Referal Code" className="mt-4" />
+      <Input placeholder="Referal Code" className="mt-4 mb-4" />
+      <Link href="/auth/login">Already have an account?</Link>
+
       <Button className="mt-5">Sign up</Button>
     </form>
   );

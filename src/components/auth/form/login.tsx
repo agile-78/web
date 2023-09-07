@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/button";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 
@@ -40,6 +41,11 @@ export function LoginForm() {
         className="text-gray-500 px-3 py-2 border border-gray-400 rounded-lg mb-5"
         placeholder="Password"
       />
+
+      <Link className="block mb-4" href="/auth/signup">
+        Don&apos;t have an account? sign up
+      </Link>
+
       <Button>Sign In</Button>
     </form>
   );
