@@ -11,7 +11,7 @@ export function LoginForm() {
   }
 
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || undefined;
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
   const submitHandler = async (val: data) => {
     await signIn("credentials", {
       ...val,
