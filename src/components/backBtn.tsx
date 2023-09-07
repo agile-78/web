@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "./button";
 import { useRouter } from "next/navigation";
 
 export default function BackBtn() {
@@ -12,7 +11,7 @@ export default function BackBtn() {
   };
 
   return (
-    <Button type="button" onClick={onClick}>
+    <button type="button" onClick={onClick}>
       <Image
         src="/backArrow.png"
         alt="back arrow pic"
@@ -20,6 +19,6 @@ export default function BackBtn() {
         height={15}
         className="h-auto w-auto"
       />
-    </Button>
+    </button>
   );
 }
