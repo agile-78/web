@@ -16,8 +16,8 @@ export function Reward({ src, alt, title, points, _id }: IProp) {
       <Image
         src={`${BASE_API_URI}/${src}`}
         alt={alt}
-        width={0}
-        height={0}
+        width={100}
+        height={100}
         className="w-1/4 h-1/3 p1-2 pt-2"
       />
       <div>

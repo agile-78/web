@@ -13,8 +13,8 @@ const FindRecyclingBins: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
           <Image
             className="w-100 h-100 mb-4"
-            width={0}
-            height={0}
+            width={100}
+            height={100}
             src="/info-images/main_bin.png" // Add the path to your image
             alt="Main Bin Icon"
           />
@@ -50,8 +50,8 @@ const FindRecyclingBins: React.FC = () => {
         <div className="mt-8 bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
           <Image
             className="w-100 h-100 mb-4"
-            width={0}
-            height={0}
+            width={100}
+            height={100}
             src="/info-images/battery_bin.png" // Add the path to your image
             alt="Bulb Bin Icon"
           />

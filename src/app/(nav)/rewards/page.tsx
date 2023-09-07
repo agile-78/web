@@ -28,8 +28,8 @@ export default async function rewards() {
         <div className="bg-[#E498FF] flex justify-center text-white pl-4 rounded-lg shadow-md w-[35%] h-[100%]">
           <Image
             src={"/star.png"}
-            width={0}
-            height={0}
+            width={100}
+            height={100}
             alt="star"
             className="mr-1 w-[20%] h-[60%] my-1"
           />

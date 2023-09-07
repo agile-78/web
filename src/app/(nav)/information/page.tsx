@@ -131,8 +131,8 @@ const RecyclingSection: React.FC<{
           <div className="mb-2 sm:mb-4 flex items-center justify-center">
             <Image
               className="w-12 h-12 sm:w-16 sm:h-16 mr-2 sm:mr-4"
-              width={0}
-              height={0}
+              width={100}
+              height={100}
               src={recyclingInfo.imageUrl}
               alt={recyclingInfo.title}
             />
@@ -166,8 +166,8 @@ const RecyclingSection: React.FC<{
               className="w-12 h-12 sm:w-16 sm:h-16 mr-2 sm:mr-4"
               src={recyclingInfo.imageUrl}
               alt={recyclingInfo.title}
-              width={0}
-              height={0}
+              width={100}
+              height={100}
             />
           </div>
           <div className="text-center">

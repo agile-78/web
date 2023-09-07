@@ -15,8 +15,8 @@ export default function Home() {
           <Image
             src="/home-images/bin.png"
             alt="Bins"
-            width={0}
-            height={0}
+            width={100}
+            height={100}
             className="w-full h-auto"
           />
           <div className="absolute inset-0 flex items-center justify-center"></div>
@@ -38,8 +38,8 @@ export default function Home() {
           >
             <Image
               src="/home-images/reward.png"
-              width={0}
-              height={0}
+              width={100}
+              height={100}
               alt="Rewards"
               className="w-full h-auto"
             />
@@ -55,8 +55,8 @@ export default function Home() {
             <Image
               src="/home-images/map.png"
               alt="Map"
-              width={0}
-              height={0}
+              width={100}
+              height={100}
               className="w-full h-auto"
             />
             <div className="absolute inset-0 flex items-center justify-center"></div>
