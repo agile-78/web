@@ -22,9 +22,11 @@ export function EditForm() {
     } = {};
 
     for (let key in data) {
+      if (!data[key]) {
+        continue;
+      }
       if (
         // @ts-ignore
-
         data[key] == user[key] ||
         (key === "password" && data[key] === "******")
       ) {
