@@ -1,32 +1,41 @@
 import React from 'react';
+import Image from "next/image";
+import bin from "../../../../public/home-images/bin.png";
+import rewards from "../../../../public/home-images/rewards.png";
+import maps from "../../../../public/home-images/map.png";
 
 const YourComponent: React.FC = () => (
-  <div className="flex flex-col justify-center items-center min-h-screen p-10 pt-50">
-      <div style={{ textAlign: 'center', width: '80%' }}>
-        <button className="bg-blue-600 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-blue-300 focus:bg-blue-600 relative w-full transition-all" style={{ width: '100%' }}>
-        <div style={{ fontWeight: 'bold', fontSize: '18%' }}>Scan to earn points</div>
-          <img src="/home-images/bin.png" alt="Rewards" style={{ width: '100%', height: 'auto' }} />
-          <div className="absolute inset-0 flex items-center justify-center"></div>
+  <div className="flex flex-col items-center justify-center w-screen h-screen">
+    <div className='w-[90%] h-[50%]'>
+      <button className="bg-gradient-to-b from-[#34BBFB] to-[#E8F6FD] w-[100%] h-[85%] rounded-xl">
+        <div className="flex flex-col items-center justify-center w-[100%] h-[100%]">
+          <p className='text-3xl font-bold h-[40%] flex items-center justify-center'>Scan to earn points</p>
+          <Image src={bin} alt="Recycle Bin" className="h-[60%] w-auto" />
+        </div>
+      </button>
+    </div>
+
+
+
+    <div className='flex w-[90%] h-[40%]'>
+      <div className='w-[45%] h-[55%] mr-[5%]'>
+        <button className="bg-[#E498FF] w-[100%] h-[85%] rounded-xl">
+          <div className="flex flex-col items-center justify-center w-[100%] h-[100%]">
+            <Image src={rewards} alt="Rewards" className="h-[60%] w-auto" />
+          </div>
         </button>
+        <p className='text-lg font-bold mt-1 flex items-center justify-center'>Rewards</p>
       </div>
-      <br /><br />
-    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-      <div style={{ textAlign: 'center', width: '49%' }}>
-        <button className="bg-purple-500 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-purple-600 focus:bg-purple-600 relative w-full transition-all" style={{ width: '100%' }}>
-          <img src="/home-images/reward.png" alt="Rewards" style={{ width: '100%', height: 'auto' }} />
-          <div className="absolute inset-0 flex items-center justify-center"></div>
+
+      <div className='w-[45%] h-[55%] ml-[5%]'>
+        <button className="bg-[#E2FFB2] w-[100%] h-[85%] rounded-xl">
+          <div className="flex flex-col items-center justify-center w-[100%] h-[100%]">
+            <Image src={maps} alt="Map" className="h-[90%] w-auto" />
+          </div>
         </button>
-        <div style={{ fontSize: '30%' }}>Rewards</div>
-      </div>
-      <div style={{ textAlign: 'center', width: '49%' }}>
-      <button className="bg-green-500 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-green-600 focus:bg-green-600 relative w-full transition-all" style={{ width: '100%' }}>
-          <img src="/home-images/map.png" alt="Rewards" style={{ width: '100%', height: 'auto' }} />
-          <div className="absolute inset-0 flex items-center justify-center"></div>
-        </button>
-        <div style={{ fontSize: '30%' }}>Recycling Locations</div>
+        <p className='text-lg font-bold mt-1 flex items-center justify-center text-center'>Recycling Locations</p>
       </div>
     </div>
-    <br /><br /><br /><br />
   </div>
 );
 
