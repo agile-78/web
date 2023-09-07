@@ -1,9 +1,13 @@
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
 export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen p-10 pt-50">
+      <Head>
+        <title>Home</title>
+      </Head>
       <div style={{ textAlign: "center", width: "80%" }}>
         <button
           className="bg-blue-600 text-white text-lg font-semibold py-6 sm:py-24 px-4 sm:px-20 rounded-lg hover:bg-blue-300 focus:bg-blue-600 relative w-full transition-all"

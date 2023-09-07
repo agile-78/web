@@ -1,10 +1,14 @@
 import Image from "next/image";
 import { EditForm } from "@/components/form/edit";
 import BackBtn from "@/components/backBtn";
+import Head from "next/head";
 
 export default function edit() {
   return (
     <main className="bg-white h-screen">
+      <Head>
+        <title>Profile Edit</title>
+      </Head>
       <div className="pl-2 pt-2">
         <BackBtn />
       </div>

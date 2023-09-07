@@ -1,4 +1,5 @@
 import { RecyclingSection } from "@/components/recyclingSection";
+import Head from "next/head";
 import React from "react";
 
 export default function Information() {
@@ -118,6 +119,9 @@ export default function Information() {
 
   return (
     <div>
+      <Head>
+        <title>Information</title>
+      </Head>
       <RecyclingSection
         title="PLASTIC"
         recyclableItems={recyclableItems.plasitic}

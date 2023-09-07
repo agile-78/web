@@ -4,10 +4,14 @@ import starbucks from "../../../../public/starbucks.png";
 import burgerking from "../../../../public/burgerking.png";
 import star from "../../../../public/star.png";
 import BackBtn from "@/components/backBtn";
+import Head from "next/head";
 
 export default function redeem() {
   return (
     <main className="bg-white h-screen">
+      <Head>
+        <title>Redeemed Rewards</title>
+      </Head>
       <div className="pl-2 pt-2">
         <BackBtn />
       </div>

@@ -1,9 +1,13 @@
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
 const FindRecyclingBins: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <Head>
+        <title>Location</title>
+      </Head>
       <div className="max-w-2xl mx-auto text-center">
         <h1 className="text-3xl font-semibold text-gray-800 mb-6">
           Finding Recycling Bins Near You

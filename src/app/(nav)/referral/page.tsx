@@ -1,8 +1,12 @@
 import BackBtn from "@/components/backBtn";
+import Head from "next/head";
 
 export default function referral() {
   return (
     <main className="bg-white">
+      <Head>
+        <title>Referral</title>
+      </Head>
       <div className="pl-2 pt-2">
         <BackBtn />
       </div>

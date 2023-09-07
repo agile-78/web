@@ -6,6 +6,7 @@ import { SignOutButton } from "@/components/signOut";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getPoints } from "@/services/userService";
+import Head from "next/head";
 
 export default async function profile() {
   const session = await getServerSession(authOptions);
@@ -16,6 +17,9 @@ export default async function profile() {
 
   return (
     <main className="bg-white">
+      <Head>
+        <title>Profile</title>
+      </Head>
       <div className="flex flex-col justify-center items-center w-screen h-screen">
         <Image
           src={profilepic}

@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import { getRewards } from "@/services/rewardService";
 import { Session, getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Reward } from "@/components/reward";
 import BackBtn from "@/components/backBtn";
 import { getPoints } from "@/services/userService";
+import Head from "next/head";
 
 export default async function rewards() {
   const session = (await getServerSession(authOptions)) as Session;
@@ -18,6 +18,9 @@ export default async function rewards() {
   );
   return (
     <main className="bg-white h-screen">
+      <Head>
+        <title>Rewards</title>
+      </Head>
       <div className="pl-2 pt-2">
         <BackBtn />
       </div>
