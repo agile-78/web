@@ -6,6 +6,8 @@ export interface IInputProps {
   className?: string;
   name?: string;
   defaultValue?: string;
+  value?:string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export function Input({
@@ -14,6 +16,8 @@ export function Input({
   placeholder,
   className,
   defaultValue,
+  value,
+  onChange,
 }: IInputProps) {
   return (
     <input
@@ -22,6 +26,8 @@ export function Input({
       type={type}
       className={`w-full text-gray-500 px-3 py-2 border border-gray-400 rounded-lg ${className}`}
       placeholder={placeholder}
+      value={value}
+      onChange={onChange}
     />
   );
 }
