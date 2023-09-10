@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import profilepic from "../../../../public/profile.png";
 import { SignOutButton } from "@/components/signOut";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -22,7 +21,9 @@ export default async function profile() {
       </Head>
       <div className="flex flex-col justify-center items-center w-screen h-screen">
         <Image
-          src={profilepic}
+          src={"/profile.png"}
+          width={100}
+          height={100}
           alt="Profile picture"
           className="px-4 mx-auto w-auto h-[20%]"
         />
