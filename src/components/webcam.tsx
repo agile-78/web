@@ -7,10 +7,13 @@ import Webcam from "react-webcam";
 export const WebcamCapture = () => {
   const { width, height } = useWindowDimensions();
 
+  const isLandscape = height <= width;
+  const ratio = isLandscape ? width / height : height / width;
+  console.log(ratio);
+
   const videoConstraints = {
-    width,
-    height,
     facingMode: "user",
+    aspectRatio: ratio,
   };
   const webcamRef = useRef(null);
   const capture = useCallback(() => {
@@ -22,14 +25,11 @@ export const WebcamCapture = () => {
     <div className="w-full h-full">
       <Webcam
         audio={false}
+        width={width}
         height={height}
-        minScreenshotHeight={height}
-        minScreenshotWidth={width}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
-        width={width}
         videoConstraints={videoConstraints}
-        className="w-full h-full bg-black"
       />
       <button onClick={capture}>Capture photo</button>
     </div>
