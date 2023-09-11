@@ -32,7 +32,6 @@ export function SignupForm() {
     } else {
       // Handle form validation errors, display messages, etc.
     }
-
   };
   const [formData, setFormData] = useState({
     email: "",
@@ -61,7 +60,7 @@ export function SignupForm() {
 
     // Check if there are any validation errors
     return Object.values(newErrors).every((error) => error === "");
-  }
+  };
   const isValidEmail = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(formData.email);
@@ -72,28 +71,24 @@ export function SignupForm() {
   };
   return (
     <form className="mx-2" onSubmit={submitHandler}>
-      <Input 
-        name="name" 
-        placeholder="Name" 
-        className="mt-4" 
-      />
-      <Input 
-        name="email" 
-        placeholder="Email address" 
-        className="mt-4" 
+      <Input name="name" placeholder="Name" className="mt-4" />
+      <Input
+        name="email"
+        placeholder="Email address"
+        className="mt-4"
         value={formData.email}
         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
+      />
       {errors.email && <div className="text-red-500">{errors.email}</div>}
-      <Input 
-        name="password" 
-        placeholder="Password" 
-        className="mt-4" 
+      <Input
+        name="password"
+        placeholder="Password"
+        className="mt-4"
         value={formData.password}
         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-        />
+      />
       {errors.password && <div className="text-red-500">{errors.password}</div>}
-      <Input placeholder="Referral Code" className="mt-4 mb-4" />
+      <Input name="" placeholder="Referral Code" className="mt-4 mb-4" />
       <Link href="/auth/login">Already have an account?</Link>
 
       <Button className="mt-5">Sign up</Button>

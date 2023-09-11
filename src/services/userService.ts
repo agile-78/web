@@ -15,3 +15,7 @@ export const getPoints = async (
 > => {
   return await get(`/users/${id}/points`, token);
 };
+
+export const getReferredCount = async (id: string, token?: string) => {
+  return await get(`/users/${id}/referralcount`, token);
+};

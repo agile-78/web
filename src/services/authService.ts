@@ -4,7 +4,7 @@ export const authenticate = async (email: string, password: string) => {
   try {
     return await axiosClient.post("/auth/login", { email, password });
   } catch (e) {
-    console.log(e);
+    console.log(e.response.data);
   }
 };
 
@@ -16,6 +16,6 @@ export const register = async (credentials: {
   try {
     return await axiosClient.post("/auth/register", credentials);
   } catch (e) {
-    console.log(e);
+    console.log(e.response);
   }
 };
