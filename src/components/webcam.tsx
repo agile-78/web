@@ -9,11 +9,10 @@ export const WebcamCapture = () => {
 
   const isLandscape = height <= width;
   const ratio = isLandscape ? width / height : height / width;
-  console.log(ratio);
 
   const videoConstraints = {
     facingMode: "user",
-    aspectRatio: ratio,
+    aspectRatio: 0.5,
   };
   const webcamRef = useRef(null);
   const capture = useCallback(() => {
