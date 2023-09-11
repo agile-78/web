@@ -10,7 +10,7 @@ export function Nav() {
           </Link>
         </li>
         <li className="absolute top-0 -translate-y-1/2">
-          <Link href="/camrea">
+          <Link href="/camera">
             <div className="rounded-full aspect-square bg-purple-600 p-5">
               <FontAwesomeIcon
                 icon={["fas", "camera-retro"]}
