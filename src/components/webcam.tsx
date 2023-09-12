@@ -12,7 +12,7 @@ export const WebcamCapture = () => {
 
   const videoConstraints = {
     facingMode: "user",
-    aspectRatio: 0.5,
+    aspectRatio: ratio,
   };
   const webcamRef = useRef(null);
   const capture = useCallback(() => {

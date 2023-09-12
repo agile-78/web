@@ -18,7 +18,6 @@ export function Nav() {
                 size="2xl"
               />
             </div>
-            {/* <div className=" w-16 rounded-full aspect-square relative bg-purple-700 before:content-[''] before:absolute before:top-1/2 before:w-1/2 before:aspect-square before:border-black before:border-2 before:left-1/2 before:rounded-lg before:-translate-x-1/2 before:-translate-y-1/2 "></div> */}
           </Link>
         </li>
         <li>
