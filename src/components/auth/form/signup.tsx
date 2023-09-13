@@ -2,7 +2,9 @@
 
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
-import { register } from "@/services/authService";
+import { API_URI } from "@/constants";
+import { authenticate, register } from "@/services/authService";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
@@ -10,15 +12,11 @@ import { FormEvent } from "react";
 import { useState } from "react";
 
 export function SignupForm() {
-  interface data {
-    email: string;
-    password: string;
-  }
-
   const router = useRouter();
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     const isValid = validateForm();
@@ -26,9 +24,7 @@ export function SignupForm() {
       try {
         await register(data as unknown as any);
         router.push("/auth/login");
-      } catch (error) {
-        console.error("Authentication failed:", error);
-      }
+      } catch (error) {}
     } else {
       // Handle form validation errors, display messages, etc.
     }

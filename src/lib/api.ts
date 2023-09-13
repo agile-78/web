@@ -17,7 +17,7 @@ export const post = async (url: string, body: any, token?: string) => {
 
     return await axiosClient.post(url, body);
   } catch (e) {
-    console.log(e);
+    throw e;
   }
 };
 

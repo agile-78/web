@@ -15,7 +15,7 @@ export function LoginForm() {
 
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
-  const submitHandler = async (val:data) => {
+  const submitHandler = async (val: data) => {
     const isValid = validateForm();
     if (isValid) {
       try {
@@ -30,7 +30,7 @@ export function LoginForm() {
     }
   };
 
-//Validating
+  //Validating
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -54,7 +54,7 @@ export function LoginForm() {
     }
     setErrors(newErrors);
     return Object.values(newErrors).every((error) => error === "");
-  }
+  };
   const isValidEmail = () => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(formData.email);
