@@ -69,7 +69,7 @@ export default function Home() {
       </div>
 
       <div className="w-[90%] h-[30%]">
-        <Link href="/camera">
+        <Link href="/information">
           <button className="mt-4 bg-gradient-to-b from-[#F7FA43] to-[#FFFFE9] w-[100%] h-[60%] rounded-xl">
             <div className="flex items-center justify-center w-[100%] h-[100%]">
               <Image
