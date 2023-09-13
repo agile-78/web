@@ -19,3 +19,19 @@ export const getPoints = async (
 export const getReferredCount = async (id: string, token?: string) => {
   return await get(`/users/${id}/referralcount`, token);
 };
+
+export const getRecycleCount = async (
+  id: string,
+  token?: string
+): Promise<
+  AxiosResponse<{
+    count: number;
+  }>
+> => {
+  try {
+    return await get(`/users/${id}/recyclecount`, token);
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};

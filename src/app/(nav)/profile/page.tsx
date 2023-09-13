@@ -4,13 +4,16 @@ import Link from "next/link";
 import { SignOutButton } from "@/components/signOut";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getPoints } from "@/services/userService";
+import { getPoints, getRecycleCount } from "@/services/userService";
 import Head from "next/head";
 
 export default async function profile() {
   const session = await getServerSession(authOptions);
 
   const res = await getPoints(session?.user._id as string, session?.apiToken);
+  const recycleCount = (
+    await getRecycleCount(session?.user._id as string, session?.apiToken)
+  ).data.count;
 
   const { points } = res?.data;
 
@@ -39,7 +42,9 @@ export default async function profile() {
           <p className="text-2xl">Your statistics</p>
         </div>
         <div className="bg-[#FFD9EB] w-[90%] p-4 mb-2 text-left rounded-lg  h-[10%]">
-          <p className="text-xl py-1 font-bold">Recycled 20 times</p>
+          <p className="text-xl py-1 font-bold">
+            Recycled {recycleCount} times
+          </p>
         </div>
         <div className="w-[90%] py-2 pl-1 text-left h-[10%]">
           <Link href="/profile/edit">
@@ -54,8 +59,9 @@ export default async function profile() {
             <p className="text-xl py-2">My referral code &gt;</p>
           </Link>
         </div>
-        <div className="w-[90%] py-2 pl-1 text-left h-[10%]"></div>
-        <SignOutButton />
+        <div className="w-[90%] py-2 pl-1 text-left h-[10%]">
+          <SignOutButton />
+        </div>
         <div className="h-[15%]"></div>
       </div>
     </main>
