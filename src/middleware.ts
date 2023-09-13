@@ -3,7 +3,7 @@ export default withAuth(function middleware(req) {}, {
   callbacks: {
     authorized: ({ req, token }) => {
       if (!req.nextUrl.pathname.startsWith("/auth") && token === null) {
-        return true;
+        return false;
       }
       return true;
     },
