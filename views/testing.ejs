@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <div class="bg-purple-200 h-screen">
+    <head>
+      <button type="button" onClick={onClick}>
+        <Image
+          src="/backArrow.png"
+          alt="back arrow pic"
+          width={15}
+          height={15}
+          className="h-auto w-auto"
+        />
+      </button>
+      <!-- Load the latest version of TensorFlow.js -->
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> 
+    </head>
+  <style>
+    /* Custom CSS */
+    .custom-border {
+      height: 50vh; /* Set the border height to 50% of the viewport height (half of the page height) */
+    }
+  </style>
+
+    <body class="bg-green-200"> <!-- Change the background color of the entire page to light green -->
+      <div class="container mx-auto p-4 space-y-4">
+        <h1 class="text-3xl font-bold text-blue-600">Image Classification</h1>
+        
+        <div class="image-preview bg-white p-4 rounded-lg border border-blue-500 border-4;">
+          <img class="w-auto object-contain" id="uploaded-image" src="" alt="Uploaded Image">
+        </div>    
+        
+        <button class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 " id="classify">Classify</button>
+        <label for="image-upload" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 ">
+          Upload Image
+        </label>
+        <input type="file" id="image-upload" class="hidden">
+        
+        <div id="console" class="mt-4"></div>
+      </div>
+    
+      <script> 
+        // Add your JavaScript code here 
+        const classifier = knnClassifier.create(); 
+        const uploadedImageElement = document.getElementById("uploaded-image"); 
+        const imageUploadInput = document.getElementById("image-upload"); 
+    
+        let net; 
+    
+        mobilenet.load().then((loadedNet) => {
+          net = loadedNet;{
+          // Your code here
+          console.log("Page loaded!");
+          // Automatically load images from the /data/cans folder
+          loadingImagesFromFolder("/data/plastic_bottles", 0);
+          loadingImagesFromFolder("/data/aluminium_cans", 1);
+          loadingImagesFromFolder("/data/paper", 2);
+          }
+        });
+
+        async function loadingImagesFromFolder(folderName, classId) { 
+          // Simulate loading images from a folder
+          const images = [
+            folderName + "/1.jpg",
+            folderName + "/2.jpg",
+            folderName + "/3.jpg",
+            folderName + "/4.jpg",
+            folderName + "/5.jpg",
+            folderName + "/6.jpg",
+            folderName + "/7.jpg",
+          ];
+          for (const imageUrl of images) {
+            const img = new Image();
+            img.src = imageUrl;
+            img.onload = async function () {
+              const activation = net.infer(img, true);
+              classifier.addExample(activation, classId);
+            };
+          }
+        }
+        async function app() { 
+          console.log("Loading MobileNet..."); 
+          net = await mobilenet.load(); 
+
+          console.log("Loaded model"); 
+    
+          imageUploadInput.addEventListener("change", (event) => { 
+            const file = event.target.files[0]; 
+            const reader = new FileReader(); 
+            reader.onload = function (e) { 
+              uploadedImageElement.src = e.target.result; 
+              console.log("Selected file path:", file.name); // Print the selected file path (name) to the console 
+            }; 
+            reader.readAsDataURL(file); 
+          }); 
+    
+          document.getElementById("classify").addEventListener("click", classifyImage); 
+        } 
+    
+        async function classifyImage() { 
+          const activation = net.infer(uploadedImageElement, "conv_preds"); 
+          const result = await classifier.predictClass(activation); 
+          const classes = ["Plastic Bottle", "Aluminium Can", "Paper"]; 
+          document.getElementById("console").innerText = ` 
+            Prediction: ${classes[result.label]}\n 
+            Probability: ${result.confidences[result.label]} 
+          `; 
+        } 
+    
+        app(); 
+      </script> 
+    </body> 
+  </div>
+</html>

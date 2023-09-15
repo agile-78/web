@@ -49,7 +49,7 @@ export default function Home() {
         </div>
 
         <div className="w-[45%] h-[90%] ml-[5%]">
-          <Link href="/map">
+          <Link href="/maps">
             <button className="bg-[#E2FFB2] w-[100%] h-[85%] rounded-xl">
               <div className="flex flex-col items-center justify-center w-[100%] h-[100%]">
                 <Image
