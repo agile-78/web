@@ -11,10 +11,11 @@ export default async function Points() {
     redirect("/unauthenticated");
   }
   const materials = (await getMaterial("name=Paper", session.apiToken)).data
-    .materials;
+    .recyclingMaterials;
+
   const material = materials[0];
 
-  const {} = await recycle(
+  await recycle(
     {
       userId: session.user._id,
       materialId: material._id,
