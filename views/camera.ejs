@@ -10,28 +10,17 @@
 </head> 
 <body> 
     <div id="loading" class="h-screen w-screen flex flex-col justify-center items-center">
-        <p class="max-w-lg text-3xl font-semibold leading-normal text-gray-900 dark:text-white">Loading...</p>
-        <div class="tenor-gif-embed" data-postid="13456496" data-share-method="host" data-aspect-ratio="1.23333" data-width="50%">
-        <a href="https://tenor.com/view/bt21-koya-koala-sleepy-loading-gif-13456496">Bt21 Koya Sticker</a> from <a href="https://tenor.com/search/bt21-stickers">Bt21 Stickers</a>
-        </div>
-        <script type="text/javascript" async src="https://tenor.com/embed.js"></script> 
+        <p class="max-w-lg text-3xl font-semibold leading-normal text-gray-900 dark:text-white">Loading</p>
+        <img src="/bt21-koya.gif" class="mx-auto">
     </div>
-    <div class="container h-screen bg-purple-200 p-4 hidden" id="imageclassification">
+    <div class="container h-screen w-screen bg-purple-200 p-4 hidden" id="imageclassification">
         <h1 class="text-2xl font-bold text-blue-600">Image Scanning Page</h1>
-        <div id="camera" class="image-preview mb-4">
-            <video id="camera-stream" autoplay playsinline class="w-full max-h-60 border border-gray-300"></video>
-            <div id="camera-off-message" class="camera-off-message">Camera not open</div>
-        </div>
         <div class="flex justify-between items-center mb-4">
-            <button id="camera-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 mr-1 ">Toggle Camera</button>
-            <button id="capture-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 mx-1 ">Capture</button>
-            <button id="retake-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hidden ">Retake</button>
-           
+            <label for="image-input" class="file-upload-label bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 ">Take picture/Upload from Files</label>
+            <input type="file" id="image-input" accept="image/jpeg, image/jpg, image/png, image/heic" class="hidden">
         </div>
         <div class="mb-4">
-            <label for="image-input" class="file-upload-label bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 ">Upload from Files</label>
-            <input type="file" id="image-input" accept="image/jpeg, image/jpg, image/png" class="hidden">
-            <button id="submit-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 ">Submit</button>
+            <button id="submit-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hidden">Classify</button>
         </div>
         <div class="border rounded-lg border-gray-300 p-4">
             <img id="uploaded-image" src="" alt="Upload Image" class="max-w-full max-h-60">
@@ -44,18 +33,8 @@
         // Get references to the necessary elements 
         const classifier = knnClassifier.create(); 
         const imageInput = document.getElementById('image-input'); 
-        const cameraStream = document.getElementById('camera-stream'); 
         const submitButton = document.getElementById('submit-button'); 
-        const cameraButton = document.getElementById('camera-button'); 
-        const camera = document.getElementById('camera'); 
-        const captureButton = document.getElementById('capture-button'); 
-        const retakeButton = document.getElementById('retake-button'); 
         const uploadedImageElement = document.getElementById('uploaded-image'); 
-        const cameraOffMessage = document.getElementById('camera-off-message'); 
- 
-        let mediaStream = null; 
-        let isCameraActive = true; 
-        
         let net; 
     
         mobilenet.load().then((loadedNet) => {
@@ -106,37 +85,13 @@
             }; 
             reader.readAsDataURL(file); 
           }); 
-          submitButton.addEventListener("click", classifyImage);
-          uploadedImageElement.addEventListener('load', function () {
-            // Show the submit button when the image is loaded
-            submitButton.style.display = 'block';
-          });
-          // Add event listener to the capture button 
-        captureButton.addEventListener('click', function () { 
-            if (mediaStream) { 
-                const canvas = document.createElement('canvas'); 
-                const context = canvas.getContext('2d'); 
-                canvas.width = cameraStream.videoWidth;
-                canvas.height = cameraStream.videoHeight; 
-                context.drawImage(cameraStream, 0, 0, canvas.width, canvas.height); 
-                const capturedImage = canvas.toDataURL('image/jpeg'); 
-                displayCapturedImage(capturedImage); 
-                
-                camera.style.display = "none";
-                captureButton.style.display = "none";
-                retakeButton.style.display = "block";
-
-            } 
-        }); 
-        retakeButton.addEventListener('click', function () { 
-            camera.style.display = "block";
-            captureButton.style.display = "block";
-            retakeButton.style.display = "none";
-            submitButton.style.display = 'none';
-            uploadedImageElement.src = "";
-        });
+          
         } 
-    
+        submitButton.addEventListener("click", classifyImage);
+         uploadedImageElement.addEventListener('load', function () {
+          // Show the submit button when the image is loaded
+          submitButton.style.display = 'block';
+        });
         async function classifyImage() { 
           const activation = net.infer(uploadedImageElement, "conv_preds"); 
           const result = await classifier.predictClass(activation); 
@@ -149,55 +104,6 @@
     
         app(); 
 
-        // Function to start the camera and display the stream 
-        function startCamera() { 
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) { 
-                navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 } }) 
-                    .then(function (stream) { 
-                        cameraStream.srcObject = stream; 
-                        mediaStream = stream; 
-                        cameraOffMessage.style.display = 'none'; // Hide camera off message 
-                    }) 
-                    .catch(function (error) { 
-                        console.error('Error accessing camera:', error); 
-                        alert('Error accessing camera. Please check your camera permissions.'); 
-                        cameraOffMessage.style.display = 'block'; // Show camera off message 
-                    }); 
-            } else { 
-                alert('Your browser does not support camera access.'); 
-            } 
-        } 
- 
-        // Start the camera immediately when the page loads 
-        window.addEventListener('DOMContentLoaded', startCamera); 
- 
-        // Function to stop the camera stream 
-        function stopCamera() { 
-            if (mediaStream) { 
-                const tracks = mediaStream.getTracks(); 
-                tracks.forEach(track => track.stop()); 
-                cameraStream.srcObject = null; 
-                mediaStream = null; 
-                cameraOffMessage.style.display = 'block'; // Show camera off message 
-            } 
-        } 
- 
-        // Add event listener to the camera button 
-        cameraButton.addEventListener('click', function () { 
-            if (isCameraActive) { 
-                stopCamera(); 
-                cameraStream.style.display = 'none'; 
-            } else { 
-                startCamera(); 
-                cameraStream.style.display = 'block'; 
-            } 
-            isCameraActive = !isCameraActive; 
-        }); 
- 
-        // Function to display the captured image 
-        function displayCapturedImage(imageData) { 
-              uploadedImageElement.src = imageData; 
-        } 
     </script> 
 </body> 
 </html>
