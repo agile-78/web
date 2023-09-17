@@ -68,7 +68,9 @@
       // Get references to the necessary elements
       const classifier = knnClassifier.create();
       const imageInput = document.getElementById("image-input");
-
+      
+      const loadingElement = document.getElementById("loading");
+      const imageclassificationElement = document.getElementById("imageclassification");
       const classifyButton = document.getElementById("classify-button");
       const submitButton = document.getElementById("submit-button");
       const uploadedImageElement = document.getElementById("uploaded-image");
@@ -77,34 +79,18 @@
       mobilenet.load().then((loadedNet) => {
         net = loadedNet;
 
-        var loadingElement = document.getElementById("loading");
-        loadingElement.style.display = "none";
-
-        var imageclassificationElement = document.getElementById(
-          "imageclassification"
-        );
-        imageclassificationElement.style.display = "block";
 
         // Automatically load images from the /data folder
-        loadingImagesFromFolder("/data/plastic_bottles", 0);
-        loadingImagesFromFolder("/data/aluminium_cans", 1);
-        loadingImagesFromFolder("/data/paper", 2);
+        loadingImagesFromFolder("/data/plastic_bottles/", 0, 7);
+        loadingImagesFromFolder("/data/aluminium_cans/", 1, 7);
+        loadingImagesFromFolder("/data/paper/", 2, 7);
         console.log("Loaded model");
       });
-      async function loadingImagesFromFolder(folderName, classId) {
+      async function loadingImagesFromFolder(folderName, classId, numberOfImages) {
         // Simulate loading images from a folder
-        const images = [
-          folderName + "/1.jpg",
-          folderName + "/2.jpg",
-          folderName + "/3.jpg",
-          folderName + "/4.jpg",
-          folderName + "/5.jpg",
-          folderName + "/6.jpg",
-          folderName + "/7.jpg",
-        ];
-        for (const imageUrl of images) {
+        for (let i = 1; i <= numberOfImages; i++) {
           const img = new Image();
-          img.src = imageUrl;
+          img.src = folderName + i +".jpg",
           img.onload = async function () {
             const activation = net.infer(img, true);
             classifier.addExample(activation, classId);
@@ -115,6 +101,9 @@
       async function app() {
         console.log("Loading MobileNet...");
         net = await mobilenet.load();
+        //after the model is loaded, it will display the page
+        loadingElement.style.display = "none";
+        imageclassificationElement.style.display = "block";
         //when user upload a file to classify
         imageInput.addEventListener("change", (event) => {
           submitButton.style.display = "none"; // Hide the submit button when the image is changed
