@@ -20,12 +20,13 @@
             <input type="file" id="image-input" accept="image/jpeg, image/jpg, image/png, image/heic" class="hidden">
         </div>
         <div class="mb-4">
-            <button id="submit-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hidden">Classify</button>
+            <button id="classify-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hidden">Classify</button>
         </div>
         <div class="border rounded-lg border-gray-300 p-4">
             <img id="uploaded-image" src="" alt="Upload Image" class="max-w-full max-h-60">
         </div>
         <div id="console" class="mt-4"></div>
+        <button id="submit-button" class=" flex-grow bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hidden">Submit</button>
     </div>
     
  
@@ -33,6 +34,8 @@
         // Get references to the necessary elements 
         const classifier = knnClassifier.create(); 
         const imageInput = document.getElementById('image-input'); 
+      
+        const classifyButton = document.getElementById('classify-button'); 
         const submitButton = document.getElementById('submit-button'); 
         const uploadedImageElement = document.getElementById('uploaded-image'); 
         let net; 
@@ -77,6 +80,8 @@
           net = await mobilenet.load(); 
           //when user upload a file to classify
           imageInput.addEventListener("change", (event) => { 
+            submitButton.style.display = 'none'; // Hide the submit button when the image is changed
+            document.getElementById("console").innerText = ''; //Remove the results when image is changed
             const file = event.target.files[0]; 
             const reader = new FileReader(); 
             reader.onload = function (e) { 
@@ -87,10 +92,11 @@
           }); 
           
         } 
-        submitButton.addEventListener("click", classifyImage);
-         uploadedImageElement.addEventListener('load', function () {
+        classifyButton.addEventListener("click", classifyImage);
+        
+        uploadedImageElement.addEventListener('load', function () {
           // Show the submit button when the image is loaded
-          submitButton.style.display = 'block';
+          classifyButton.style.display = 'block';
         });
         async function classifyImage() { 
           const activation = net.infer(uploadedImageElement, "conv_preds"); 
@@ -100,8 +106,14 @@
             Prediction: ${classes[result.label]}\n 
             Probability: ${result.confidences[result.label]} 
           `; 
+          if(result.confidences[result.label] > 0.5)
+          {
+            submitButton.style.display = 'block';
+          }
         } 
-    
+        submitButton.addEventListener('click', function () {
+          window.location.href = '/points';
+        });
         app(); 
 
     </script> 
