@@ -6,7 +6,7 @@ export default function referral() {
     return ( 
     <main className="bg-white">
       <div className="pl-2 pt-2">
-      <Link href="/profile"><Image src={backArrow} alt="Back" /></Link>
+      <Link href="/offline"><Image src={backArrow} alt="Back" /></Link>
       </div>
   
       <div className="flex flex-col justify-center items-center w-screen h-screen p-2">
