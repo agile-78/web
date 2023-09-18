@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import "leaflet.locatecontrol";
 import axios from "axios";
 
 const Map = () => {
@@ -27,6 +28,15 @@ const Map = () => {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
+
+    L.control
+      .locate({
+        position: "topright",
+        strings: {
+          title: "Show me where I am, yo!",
+        },
+      })
+      .addTo(map);
   }, []);
 
   useEffect(() => {
