@@ -6,7 +6,6 @@ import "leaflet/dist/leaflet.css";
 
 export default function maps() {
   const Map = dynamic(() => import("@/components/map"), { ssr: false });
-
   return (
     <div>
       <div className="flex justify-between h-[10%] mx-3">
