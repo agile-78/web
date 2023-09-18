@@ -10,7 +10,7 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <div className="w-[90%] h-[45%]">
-        <Link href="/offline/camera">
+        <a href="/offline/camera">
           <button className="bg-gradient-to-b from-[#34BBFB] to-[#E8F6FD] w-[100%] h-[90%] rounded-xl">
             <div className="flex flex-col items-center justify-center w-[100%] h-[100%]">
               <p className="text-3xl font-bold h-[40%] flex items-center justify-center">
@@ -25,7 +25,7 @@ export default function Home() {
               />
             </div>
           </button>
-        </Link>
+        </a>
       </div>
 
       <div className="flex w-[90%] h-[20%]">

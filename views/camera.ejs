@@ -79,15 +79,15 @@
       mobilenet.load().then((loadedNet) => {
         net = loadedNet;
 
+        //after the model is loaded, it will display the page
+        loadingElement.style.display = "none";
+        imageclassificationElement.style.display = "block";
 
         // Automatically load images from the /data folder
         loadingImagesFromFolder("/data/plastic_bottles/", 0, 7);
         loadingImagesFromFolder("/data/aluminium_cans/", 1, 7);
         loadingImagesFromFolder("/data/paper/", 2, 7);
         console.log("Loaded model");
-        //after the model is loaded, it will display the page
-        loadingElement.style.display = "none";
-        imageclassificationElement.style.display = "block";
       });
       async function loadingImagesFromFolder(folderName, classId, numberOfImages) {
         // Simulate loading images from a folder
