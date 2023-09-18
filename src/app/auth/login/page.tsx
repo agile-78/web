@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link"
 import { LoginForm } from "@/components/auth/form/login";
 
 export default function login() {
@@ -13,7 +14,11 @@ export default function login() {
       <div className=" px-5 pt-3 bg-white flex flex-col justify-center">
         <span>Welcome back!</span>
         <LoginForm />
+        <Link href="/offline">
+          <span>View the project offline</span>
+        </Link>
       </div>
+      
     </main>
   );
 }

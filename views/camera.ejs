@@ -85,6 +85,9 @@
         loadingImagesFromFolder("/data/aluminium_cans/", 1, 7);
         loadingImagesFromFolder("/data/paper/", 2, 7);
         console.log("Loaded model");
+        //after the model is loaded, it will display the page
+        loadingElement.style.display = "none";
+        imageclassificationElement.style.display = "block";
       });
       async function loadingImagesFromFolder(folderName, classId, numberOfImages) {
         // Simulate loading images from a folder
@@ -101,9 +104,6 @@
       async function app() {
         console.log("Loading MobileNet...");
         net = await mobilenet.load();
-        //after the model is loaded, it will display the page
-        loadingElement.style.display = "none";
-        imageclassificationElement.style.display = "block";
         //when user upload a file to classify
         imageInput.addEventListener("change", (event) => {
           submitButton.style.display = "none"; // Hide the submit button when the image is changed
