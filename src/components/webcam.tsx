@@ -14,12 +14,16 @@ export const WebcamCapture: FC = () => {
   const { width, height } = useWindowDimensions();
   const { data: session } = useSession();
   const router = useRouter();
+  const FACING_MODE_USER = "user";
+  const FACING_MODE_ENVIRONMENT = "environment";
+  type FacingMode = "user" | "environment";
+  const [facingMode, setFacingMode] = useState<FacingMode>(FACING_MODE_USER);
 
   const isLandscape = height <= width;
   const ratio = isLandscape ? width / height : height / width;
 
   const videoConstraints = {
-    facingMode: "user",
+    facingMode,
     aspectRatio: ratio,
   };
   const webcamRef = useRef(null);
@@ -135,14 +139,28 @@ export const WebcamCapture: FC = () => {
         videoConstraints={videoConstraints}
       />
       {material === null ? (
-        <button
-          className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full w-20 block text-2xl aspect-square bg-purple-600"
-          onClick={() => {
-            capture();
-          }}
-        >
-          <i className="fa-solid fa-camera fa-2x text-white"></i>
-        </button>
+        <>
+          <button
+            className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full w-20 block text-2xl aspect-square bg-purple-600"
+            onClick={() => {
+              capture();
+            }}
+          >
+            <i className="fa-solid fa-camera fa-2x text-white"></i>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFacingMode(
+                facingMode === FACING_MODE_USER
+                  ? FACING_MODE_ENVIRONMENT
+                  : FACING_MODE_USER
+              );
+            }}
+          >
+            <i className="fa-solid fa-repeat fa-3x absolute bottom-1 left-[25%]"></i>
+          </button>
+        </>
       ) : (
         <div>
           <h1>{material.name}</h1>
