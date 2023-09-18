@@ -9,10 +9,13 @@ import Webcam from "react-webcam";
 import { getMaterial } from "@/services/recycleService";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import NextImage from "next/image";
+import { Loading } from "./loading";
 
 export const WebcamCapture: FC = () => {
   const { width, height } = useWindowDimensions();
   const { data: session } = useSession();
+  const [imageSrc, setImageSrc] = useState(null);
   const router = useRouter();
   const FACING_MODE_USER = "user";
   const FACING_MODE_ENVIRONMENT = "environment";
@@ -45,7 +48,7 @@ export const WebcamCapture: FC = () => {
   const capture = useCallback(async () => {
     // @ts-ignore
     const imageSrc = webcamRef?.current?.getScreenshot();
-
+    setImageSrc(imageSrc);
     const blob = await (await fetch(imageSrc)).blob();
 
     const tensors = tf.browser.fromPixels(await createImageBitmap(blob));
@@ -128,20 +131,30 @@ export const WebcamCapture: FC = () => {
       `);
   }
 
+  console.log(model);
+
+  if (model.net === null) {
+    return <Loading />;
+  }
+
   return (
     <div className="w-screen h-screen relative overflow-hidden">
-      <Webcam
-        audio={false}
-        width={width}
-        height={height}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        videoConstraints={videoConstraints}
-      />
+      {imageSrc === null ? (
+        <Webcam
+          audio={false}
+          width={width}
+          height={height}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+        />
+      ) : (
+        <NextImage src={imageSrc} width={width} height={height} alt="pic" />
+      )}
       {material === null ? (
         <>
           <button
-            className="absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full w-20 block text-2xl aspect-square bg-purple-600"
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 rounded-full w-20 block text-2xl aspect-square bg-purple-600"
             onClick={() => {
               capture();
             }}
@@ -158,27 +171,37 @@ export const WebcamCapture: FC = () => {
               );
             }}
           >
-            <i className="fa-solid fa-repeat fa-3x absolute bottom-1 left-[25%]"></i>
+            <i className="fa-solid fa-repeat fa-3x absolute bottom-10 left-[25%]"></i>
           </button>
         </>
       ) : (
-        <div>
-          <h1>{material.name}</h1>
-          <span>Number of points: {material.points}</span>
-          <div>
+        <div className="absolute flex flex-col rounded-t-[20%]  items-center bottom-0 bg-gradient-to-b from-primary from-50% w-full h-[70%]">
+          <span className="text-5xl mt-20 mb-10">{material.name}</span>
+          <span className="text-3xl mb-10">
+            Number of points: {material.points}
+          </span>
+          <span className="text-3xl">Probability: {material?.probability}</span>
+          <div className="absolute bottom-0 flex w-full justify-between px-5 mb-5">
             <button
+              type="button"
               onClick={() => {
                 setMaterial(null);
+                setImageSrc(null);
               }}
+              className="text-black flex flex-col"
             >
-              Back to Scan Again
+              <i className="fa-solid fa-arrow-left fa-3x"></i>
+              <span>Back to Scan Again</span>
             </button>
             <button
+              type="button"
               onClick={() => {
                 router.push("/points/" + material._id);
               }}
+              className="text-black flex flex-col"
             >
-              Proceed
+              <i className="fa-solid fa-arrow-right fa-3x"></i>
+              <span>Proceed</span>
             </button>
           </div>
         </div>
