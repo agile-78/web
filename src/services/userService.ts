@@ -5,6 +5,10 @@ export const editProfile = async (id: string, body: any, token?: string) => {
   return await patch(`/users/${id}`, body, token);
 };
 
+export const getUser = async (id: string, token: string) => {
+  return await get(`/users/${id}`, token);
+};
+
 export const getPoints = async (
   id: string,
   token?: string

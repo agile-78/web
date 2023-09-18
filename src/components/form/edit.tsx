@@ -6,10 +6,10 @@ import { Input } from "../input";
 import { PasswordInput } from "./passwordInput";
 import { signOut, useSession } from "next-auth/react";
 import { Session } from "next-auth";
-import { editProfile } from "@/services/userService";
+import { editProfile, getUser } from "@/services/userService";
 
 export function EditForm() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
 
   const { user } = session as Session;
 
