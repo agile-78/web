@@ -11,6 +11,20 @@ export const getRewards = async (
   return (await get("/rewards", token)) as any;
 };
 
+export const getMyRewards = async (
+  userId: string,
+  token: string
+): Promise<{
+  data: {
+    redemptions: {
+      _id: string;
+      rewardId: IReward;
+    }[];
+  };
+}> => {
+  return await get(`/redemptions?userId=${userId}`, token);
+};
+
 export const claimReward = async (
   body: {
     userId: string;

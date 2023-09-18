@@ -4,7 +4,7 @@ import { FormEvent } from "react";
 import { Button } from "../button";
 import { Input } from "../input";
 import { PasswordInput } from "./passwordInput";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Session } from "next-auth";
 import { editProfile } from "@/services/userService";
 
@@ -37,6 +37,7 @@ export function EditForm() {
     }
 
     await editProfile(user._id, body, session?.apiToken);
+    await signOut();
   };
 
   return (

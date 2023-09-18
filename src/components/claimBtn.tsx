@@ -5,9 +5,10 @@ import { useSession } from "next-auth/react";
 
 interface IProp {
   _id: string;
+  canClaim: boolean;
 }
 
-export function ClaimBtn({ _id }: IProp) {
+export function ClaimBtn({ _id, canClaim }: IProp) {
   const { data: session } = useSession();
 
   const claim = async () => {
@@ -23,7 +24,10 @@ export function ClaimBtn({ _id }: IProp) {
     <button
       type="button"
       onClick={claim}
-      className="bg-[#E498FF] py-2 px-4 rounded-xl"
+      disabled={!canClaim}
+      className={`${
+        canClaim ? "bg-[#E498FF]" : "bg-gray-700 text-white cursor-not-allowed"
+      } py-2 px-4 rounded-xl`}
     >
       Exchange
     </button>

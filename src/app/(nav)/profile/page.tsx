@@ -52,7 +52,9 @@ export default async function profile() {
           </Link>
         </div>
         <div className="w-[90%] py-2 pl-1 text-left h-[10%]">
-          <p className="text-xl py-2">Check Rewards &gt;</p>
+          <Link href="/myrewards">
+            <p className="text-xl py-2">Check Rewards &gt;</p>
+          </Link>
         </div>
         <div className="w-[90%] py-2 pl-1 text-left h-[10%]">
           <Link href="/referral">
