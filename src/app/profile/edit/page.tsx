@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { EditForm } from "@/components/form/edit";
-import BackBtn from "@/components/backBtn";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function edit() {
   return (
@@ -10,7 +10,15 @@ export default function edit() {
         <title>Profile Edit</title>
       </Head>
       <div className="pl-2 pt-2">
-        <BackBtn />
+        <Link href="/profile">
+          <Image
+            src="/backArrow.png"
+            alt="back arrow pic"
+            width={15}
+            height={15}
+            className="h-auto w-auto"
+          />
+        </Link>
       </div>
 
       <div className="flex justify-center items-center">
