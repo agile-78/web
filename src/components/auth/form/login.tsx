@@ -14,7 +14,7 @@ export function LoginForm() {
   }
 
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl") || "/home";
   const submitHandler = async (val: data) => {
     const isValid = validateForm();
     if (isValid) {
