@@ -175,12 +175,21 @@ export const WebcamCapture: FC = () => {
           </button>
         </>
       ) : (
-        <div className="absolute flex flex-col rounded-t-[20%]  items-center bottom-0 bg-gradient-to-b from-primary from-50% w-full h-[70%]">
+        <div
+          className={`absolute flex flex-col rounded-t-[20%]  items-center bottom-0 bg-gradient-to-b ${
+            material.probability < 0.5 ? "from-red-600 " : "from-primary"
+          } from-50% to-white w-full h-[70%]`}
+        >
           <span className="text-5xl mt-20 mb-10">{material.name}</span>
           <span className="text-3xl mb-10">
             Number of points: {material.points}
           </span>
           <span className="text-3xl">Probability: {material?.probability}</span>
+          {material.probability < 0.5 ? (
+            <span className="text-2xl mt-10">
+              Model thinks it is not recycleable. Please scan again
+            </span>
+          ) : null}
           <div className="absolute bottom-0 flex w-full justify-between px-5 mb-5">
             <button
               type="button"
@@ -198,7 +207,12 @@ export const WebcamCapture: FC = () => {
               onClick={() => {
                 router.push("/points/" + material._id);
               }}
-              className="text-black flex flex-col"
+              disabled={material.probability < 0.5}
+              className={`text-black flex flex-col ${
+                material.probability < 0.5
+                  ? "cursor-not-allowed"
+                  : "curosr-pointer"
+              }`}
             >
               <i className="fa-solid fa-arrow-right fa-3x"></i>
               <span>Proceed</span>
