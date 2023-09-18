@@ -10,6 +10,10 @@ export const recycle = async (
   return await post("/activities", body, token);
 };
 
+export const getMaterialById = async (id: string, token: string) => {
+  return await get(`/materials/${id}`, token);
+};
+
 export const getMaterial = async (query: string, token: string) => {
   return await get(`/materials?${query}`, token);
 };

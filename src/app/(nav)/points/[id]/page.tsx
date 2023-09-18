@@ -1,19 +1,21 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getMaterial, recycle } from "@/services/recycleService";
+import {
+  getMaterial,
+  getMaterialById,
+  recycle,
+} from "@/services/recycleService";
 import { getPoints } from "@/services/userService";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import React from "react";
 
-export default async function Points() {
+export default async function Points({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/unauthenticated");
   }
-  const materials = (await getMaterial("name=Paper", session.apiToken)).data
-    .recyclingMaterials;
-
-  const material = materials[0];
+  const material = (await getMaterialById(params.id, session?.apiToken)).data
+    .material;
 
   await recycle(
     {
