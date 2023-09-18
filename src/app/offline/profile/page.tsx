@@ -4,6 +4,8 @@ import Link from "next/link";
 import profilepic from "../../../../public/profile.png";
 import { SignOutButton } from "@/components/signOut";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function profile() {
   return (
     <main className="bg-white">
@@ -43,7 +45,33 @@ export default function profile() {
         <div className="w-[90%] py-2 pl-1 text-left h-[10%]"></div>
         <SignOutButton />
         <div className="h-[15%]"></div>
+
       </div>
+      <nav className="fixed bottom-0 left-0">
+      <ul className="relative flex pb-5 items-center justify-around w-screen">
+        <li>
+          <Link href="/offline">
+            <FontAwesomeIcon icon={["fas", "home"]} size="xl" />
+          </Link>
+        </li>
+        <li className="absolute top-0 -translate-y-1/2">
+          <Link href="offline/camera">
+            <div className="rounded-full aspect-square bg-purple-600 p-5">
+              <FontAwesomeIcon
+                icon={["fas", "camera-retro"]}
+                className="text-white"
+                size="2xl"
+              />
+            </div>
+          </Link>
+        </li>
+        <li>
+          <Link href="offline/profile">
+            <FontAwesomeIcon icon={["fas", "user"]} size="xl" />
+          </Link>
+        </li>
+      </ul>
+    </nav>
     </main>
   );
 }
